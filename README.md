@@ -33,6 +33,7 @@ Inside your project root, create a `.env` file and add:
 ```ini
 VITE_CLOUDINARY_URL=https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload
 VITE_CLOUDINARY_PRESET=YOUR_UPLOAD_PRESET
+VITE_CLOUDINARY_NAME=YOUR_CLOUD_NAME
 ```
 ⚠️ **Important:**
 - Replace `YOUR_CLOUD_NAME` with your actual Cloudinary cloud name.
@@ -61,6 +62,7 @@ const imageUpload = async (img) => {
   const data = new FormData();
   data.append("file", img);
   data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_PRESET);
+  data.append("cloud_name", CLOUDINARY_NAME)
 
   try {
     const response = await axios.post(import.meta.env.VITE_CLOUDINARY_URL, data);
@@ -77,7 +79,7 @@ const imageUpload = async (img) => {
 - **React (Vite)** - Fast build tool for modern frontend development.
 - **Cloudinary** - Image and video management platform.
 - **Axios** - HTTP client for API requests.
-- **Tailwind CSS** - Styling the UI.
+- **Tailwind 4 CSS** - Styling the UI.
 
 ## 🤝 Contributing
 Feel free to fork this project and submit pull requests! 😊
