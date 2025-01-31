@@ -2,18 +2,21 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 import Axios from 'axios'
 import { useState } from 'react';
 
+const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL;
+const CLOUDINARY_PRESET = import.meta.env.VITE_CLOUDINARY_PRESET;
+const CLOUDINARY_NAME = import.meta.env.VITE_CLOUDINARY_NAME;
 function FormTable() {
   //setting state to manage the image
   const [image, setImage] =useState();
-
+  
     const imageUpload = async (img) =>{
         //adding data to send to cloudinary
         const data =new FormData()
         data.append("file",img)
-        data.append("upload_preset", "preset-cloudinary")
-        data.append("cloud_name", "drhjoqfl1")
+        data.append("upload_preset", CLOUDINARY_PRESET)
+        data.append("cloud_name", CLOUDINARY_NAME)
         try {
-          const response = await Axios.post("https://api.cloudinary.com/v1_1/drhjoqfl1/image/upload", data)
+          const response = await Axios.post(CLOUDINARY_URL, data)
           console.log(response)
           return response.data.secure_url
         } catch (error) {
